@@ -1,0 +1,33 @@
+{
+  "name": "dataops",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DataOps — AI Data Analyst platform with five specialised AI agents.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "alasql": "^4.19.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.18.2",
+    "geist": "^1.7.2",
+    "lucide-react": "^0.447.0",
+    "next": "^14.2.15",
+    "papaparse": "^5.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^18.3.31",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "tailwindcss": "3.4",
+    "typescript": "^5.9.3"
+  }
+}
