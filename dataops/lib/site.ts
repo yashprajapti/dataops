@@ -3,12 +3,12 @@ export const SITE = {
   name: "DataOps",
   tagline: "Your AI data analyst team",
   owner: "Yash Prajapati",
-  email: "hello@dataops.app",
-  url: "https://dataops.vercel.app",
+  email: "yashprajapati21032006@gmail.com",
+  url: "https://dataopsv.vercel.app",
   socials: {
-    github: "https://github.com/",
-    linkedin: "https://www.linkedin.com/",
-    x: "https://x.com/",
+    github: "https://github.com/yashprajapti",
+    linkedin: "https://www.linkedin.com/in/yash-prajapati-427794398/",
+    x: "https://www.linkedin.com/in/yash-prajapati-427794398/",
   },
   nav: [
     { label: "Features", href: "/#features" },
