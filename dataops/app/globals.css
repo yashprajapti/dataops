@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #04050a;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: #e8ecf4;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: rgba(198, 255, 61, 0.3); color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e2540; border-radius: 99px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: #2b3456; }
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .glass { @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08]; }
+  .card { @apply rounded-2xl bg-ink-850/80 border border-white/[0.07]; }
+  .text-grad { @apply bg-clip-text text-transparent bg-gradient-to-r from-lime via-cyan to-violet; }
+  .text-grad-soft { @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-white/55; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-lime text-ink-950 hover:bg-lime-soft shadow-[0_0_0_1px_rgba(198,255,61,.4),0_8px_30px_-8px_rgba(198,255,61,.55)]; }
+  .btn-ghost { @apply btn border border-white/10 bg-white/[0.03] text-white hover:bg-white/[0.07] hover:border-white/20; }
+  .input { @apply w-full rounded-xl border border-white/10 bg-ink-900/80 px-3.5 py-2.5 text-sm text-white placeholder:text-mute/70 outline-none transition focus:border-lime/60 focus:ring-4 focus:ring-lime/10; }
+  .eyebrow { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-mute; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-xs text-white/80; }
+}
+
+/* Background grid */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.bg-dots {
+  background-image: radial-gradient(rgba(255,255,255,.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.mask-fade-b { mask-image: linear-gradient(to bottom, #000 40%, transparent); }
+.mask-radial { mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%); }
+.mask-x { mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); }
+
+/* Animated gradient border */
+.border-glow { position: relative; }
+.border-glow::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(120deg, rgba(198,255,61,.7), rgba(61,224,255,.5), rgba(139,124,255,.7), rgba(198,255,61,.7));
+  background-size: 300% 300%;
+  animation: shimmer 6s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Spotlight card */
+.spotlight { position: relative; overflow: hidden; }
+.spotlight::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(198,255,61,.09), transparent 45%);
+}
+.spotlight:hover::after { opacity: 1; }
+
+.noise::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Markdown-ish rendering for AI messages */
+.prose-ai h3 { @apply mt-3 mb-1.5 text-sm font-semibold text-white; }
+.prose-ai p { @apply my-1.5 leading-relaxed text-white/85; }
+.prose-ai ul { @apply my-1.5 list-disc space-y-1 pl-5 text-white/85; }
+.prose-ai ol { @apply my-1.5 list-decimal space-y-1 pl-5 text-white/85; }
+.prose-ai code { @apply rounded bg-white/10 px-1 py-0.5 font-mono text-[12px] text-lime; }
+.prose-ai pre { @apply my-2 overflow-x-auto rounded-xl border border-white/10 bg-ink-950 p-3 font-mono text-[12px] leading-relaxed text-cyan; }
+.prose-ai pre code { @apply bg-transparent p-0 text-cyan; }
+.prose-ai strong { @apply font-semibold text-white; }
+.prose-ai table { @apply my-2 w-full text-xs; }
+.prose-ai th { @apply border-b border-white/10 px-2 py-1 text-left text-mute; }
+.prose-ai td { @apply border-b border-white/5 px-2 py-1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Light "paper" rendering for reports */
+.prose-light .prose-ai p, .prose-light .prose-ai li { color: #334155; }
+.prose-light .prose-ai strong { color: #0f172a; }
+.prose-light .prose-ai em { color: #64748b; }
+.prose-light .prose-ai code { background: #f1f5f9; color: #0e7490; }
+.prose-light .prose-ai h3 { color: #0f172a; }
+.paper { color-scheme: light; }
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  :root { color-scheme: light !important; }
+  html, body { background: #fff !important; }
+  body.noise::before { display: none; }
+  body * { visibility: hidden; }
+  #report, #report * { visibility: visible; }
+  #report { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none !important; border-radius: 0 !important; }
+  aside, header.sticky { display: none !important; }
+  main { padding: 0 !important; }
+  .report-section { break-inside: auto; }
+  .report-chart, .report-query, #report table, #report pre { break-inside: avoid; }
+  #report h2 { break-after: avoid; }
+  @page { size: A4; margin: 12mm; }
+}
